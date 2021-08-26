@@ -1,0 +1,67 @@
+
+<mat-card>
+    <h1>{{formType}}</h1>
+    <form #ownerForm="ngForm">
+      <div class="example-container">
+        <p>
+            <mat-form-field appearance="standard">
+              <mat-label>Full Name</mat-label>
+              <input matInput 
+                [(ngModel)] = "fullName"
+                name = "fullName"
+                required>
+            </mat-form-field>
+          </p>
+          <p>
+            <mat-form-field appearance="standard">
+              <mat-label>Car ID</mat-label>
+              <input matInput 
+                [(ngModel)] = "carId"
+                name = "carId"
+                required>
+            </mat-form-field>
+          </p>
+          <p>
+            <mat-form-field appearance="standard">
+              <mat-label>Car Company</mat-label>
+              <input matInput 
+                [(ngModel)] = "carCompany"
+                name = "carCompany"
+                required>
+            </mat-form-field>
+          </p>
+          <p>
+            <mat-form-field appearance="standard">
+              <mat-label>Car Model</mat-label>
+              <input matInput 
+                [(ngModel)] = "carModel"
+                name = "carModel"
+                required>
+            </mat-form-field>
+          </p>
+          <p>
+            <mat-form-field appearance="standard">
+              <mat-label>Car Year</mat-label>
+              <input matInput 
+                [(ngModel)] = "carYear"
+                name = "carYear"
+                required>
+            </mat-form-field>
+          </p>                                      
+        <div >
+            <button mat-raised-button color = "accent" 
+                    (click)= "updateParent()">
+                     {{formType}}
+            </button>
+            <button mat-raised-button
+            color = "disable"  
+                    (click)= "tellParentToClose()">
+                     Cancel
+            </button>            
+        </div>
+      </div>
+    </form>
+   </mat-card>
+
+
+

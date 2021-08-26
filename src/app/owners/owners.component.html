@@ -1,0 +1,325 @@
+
+<div style="float: left; margin-right: 100%;">
+
+<div *ngIf = "add_btn;" > 
+<div style="float: left; margin-right: 100%; " *ngIf = "add_btn1;">
+  <button mat-raised-button style="
+  width:150px !important;
+   margin-left: 38px; color: rgb(255, 255, 255); background-color: #92b4b3;"
+  (click)=" ex_panel=!ex_panel; setStep(0); add_btn1=false; add_btn2 = true; " 
+>
+ADD NEW
+</button>
+</div>
+
+
+</div>
+
+<div style="float: left; margin-right: 100%;" *ngIf = "add_btn2; add_btnCANCEL3" >
+  <button mat-raised-button style="
+  width:150px !important;
+   margin-left: 38px; color: rgb(255, 255, 255); background-color: #d65757;"
+  (click)=" addBtnClose(); add_btn2=false;  " 
+>
+CANCEL</button>
+</div>
+
+
+<div *ngIf = "update_btn;" > 
+
+<div style="float: left; margin-right: 100%; ">
+  <button mat-raised-button style="
+  width:150px !important;
+   margin-left: 38px; color: rgb(255, 255, 255); background-color: #92b4b3;"
+  (click)=" updateOrder();  " 
+>
+UPDATE
+</button>
+</div>
+</div>
+
+</div>
+<br> <br>
+<br>
+
+
+
+<div style="width: 750px; margin-right: 300px; position:relative; float: right; margin-bottom: 50px; " >
+  <mat-accordion class="example-headers-align" multi >
+<mat-expansion-panel [expanded]="step === 2" (opened)="setStep(2)" [disabled]="ex_pane3">
+  <mat-expansion-panel-header style="height: 70px;">
+    <mat-panel-title>
+      Attachments
+    </mat-panel-title>
+    <mat-panel-description>
+      <div style="width: 540px; height: 5px;"></div>
+      <mat-icon style="color: black;">add_a_photo</mat-icon>
+    </mat-panel-description>
+  </mat-expansion-panel-header>
+
+  <mat-spinner  [diameter]="80" *ngIf = "prgs_image" style="margin-left: 300px; margin-top: 15px;"></mat-spinner>
+
+  <img  *ngIf = "image_url" style="width: 430px; height: 250px; margin-left: 21%;" src=  '{{image_url}}'><br><br>
+
+  <button mat-raised-button style style="
+  width:150px !important;
+   margin-left: 280px; color: rgb(255, 255, 255); background-color: #707070;"
+   (click)="InputImage.click()" 
+>
+Upload<input hidden  name="uploadImage" type="file" #InputImage id="uploadImage" (change)="uploadImage($event)" 
+accept="image/*"  />
+</button>
+
+    
+  <mat-action-row>
+    <button mat-button color="warn" (click)="prevStep()">Previous</button>
+    
+    <button mat-raised-button style="background-color: #4767a1; color: white; margin-right: 15px;" (click)="add()" *ngIf = "!update_btn;">ADD</button >
+    </mat-action-row>
+</mat-expansion-panel>
+
+</mat-accordion>
+</div>
+
+
+<!-- -->
+<div style="width: 750px; margin-left: 40px;"  >
+    <mat-accordion class="example-headers-align" multi >
+  <mat-expansion-panel [expanded]="step === 0" (opened)="setStep(0)" [disabled]="ex_panel">
+    <mat-expansion-panel-header style="height: 70px;">
+      <mat-panel-title>
+        Customer
+      </mat-panel-title>
+      <mat-panel-description>
+        <div style="width: 540px; height: 5px;"></div>
+        <mat-icon style="color: black; margin-left: 13px;">account_circle</mat-icon>
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+
+    <mat-form-field style="width: 300px; margin-right: 15px;" appearance="fill">
+      <mat-label>Name</mat-label>
+      <input matInput
+      [(ngModel)] = "name"> 
+    </mat-form-field>
+
+    <mat-form-field style="width: 300px; margin-right: 15px;" appearance="fill">
+      <mat-label>City/State</mat-label>
+      <input matInput 
+      placeholder="Israel"
+      [(ngModel)] = "city">       
+    </mat-form-field>
+<br>
+    <mat-form-field style="width: 300px; margin-right: 15px;" appearance="fill">
+      <mat-label>Email</mat-label>
+      <input matInput 
+      placeholder="name@name.com"
+      [(ngModel)] = "email">       
+    </mat-form-field>
+
+    <mat-form-field style="width: 300px; margin-right: 15px;" appearance="fill">
+      <mat-label  >Phone</mat-label>
+      <span matPrefix>+972 &nbsp;</span>
+      <input type="tel" matInput 
+      placeholder="555-555-1234" 
+      type="number"
+      [(ngModel)] = "phone">
+      <mat-icon matSuffix>phone</mat-icon>
+    </mat-form-field>
+
+
+    <mat-action-row>
+      <button mat-button color="primary" (click)="nextStep(); ex_pane2=!ex_pane2;">Next</button>
+    </mat-action-row>
+  </mat-expansion-panel>
+
+
+
+
+  
+  <mat-expansion-panel  [expanded]="step == 1" (opened)="setStep(1)" [disabled]="ex_pane2">
+    <mat-expansion-panel-header style="height: 70px;">
+      <mat-panel-title>
+        Vechile Info
+      </mat-panel-title>
+      <mat-panel-description>
+        <div style="width: 540px; height: 5px;"></div>
+
+        <mat-icon style="color: black;">drive_eta</mat-icon>
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+
+    <mat-form-field style="width: 300px; margin-right: 15px;" appearance="fill" >
+      <mat-label>Brand </mat-label>
+      <mat-select  [(ngModel)] = "brand" name = "brand" required (selectionChange)="onBrandSelect()">
+        <mat-option *ngFor="let brand of brands" [value]="brand.name">
+            {{brand.name}}  
+        </mat-option>
+      </mat-select>
+    </mat-form-field>   
+
+
+    <div style="position: absolute; float:left; right: 20px; top: 70px; right: 250px; width: 160px; height: 150px;" >
+    <mat-card-content style="font-weight: bold;">Manufacturer </mat-card-content>
+    <div style="height: 150px; width: 230px; margin-top: 3px;"> 
+      <mat-spinner [diameter]="80" *ngIf = "prgs" style="margin-left: 15px; margin-top: 15px;"></mat-spinner>
+
+    <div *ngIf = "manuf_show && makerImage" style="margin-top: -15px;">
+    <mat-card-content *ngIf = "!hasError"> <mat-bold>{{(manData$ | async)?.mfrName}}</mat-bold></mat-card-content>
+
+    <img [src] = "makerImage" style="height: 90px; width: 200px;" *ngIf = "makerImage" >
+
+  </div>
+</div></div>
+    <br>
+    <mat-form-field style="width: 300px; margin-right: 15px;" appearance="fill" >
+      <mat-label>Year </mat-label>
+      <mat-select  [(ngModel)] = "year" name = "year" required>
+        <mat-option *ngFor="let year of years" [value]="year">
+            {{year}}  
+        </mat-option>
+      </mat-select>
+    </mat-form-field>   
+
+<br>
+    <mat-form-field style="width: 300px; margin-right: 15px;" appearance="fill">
+      <mat-label>Model</mat-label>
+      <input matInput
+      [(ngModel)] = "model">
+    </mat-form-field>
+
+    <mat-form-field style="width: 300px; margin-right: 15px;" appearance="fill">
+      <mat-label>VIN</mat-label>
+      <input matInput placeholder="4YISL65848Z411439" 
+      [(ngModel)] = "vin">
+    </mat-form-field>
+
+    <br>
+  
+
+   
+
+  
+
+      
+    <mat-action-row>
+      <button mat-button color="warn" (click)="prevStep()">Previous</button>
+      <button mat-button color="primary" (click)="nextStep();ex_pane3=!ex_pane3">Next</button>
+    </mat-action-row>
+  </mat-expansion-panel>
+
+</mat-accordion>
+</div>
+
+
+
+
+
+
+
+
+<!--
+<mat-card style="margin-top: 50px;">
+<p *ngIf = "!(authService.getUser()| async)">Your are not logged in</p>
+
+<div>
+  <ownerform *ngIf = "addOwnerFormOPen"
+    (update) = "add($event)"
+    (closeEdit) = "addOwnerFormOPen = false"
+    [formType] = "'Add owner'">    
+  </ownerform>
+</div>
+<mat-accordion *ngIf = "(authService.getUser()| async)">
+    <mat-expansion-panel (opened)="panelOpenState = true"
+                         (closed)="panelOpenState = false"
+                         *ngFor = "let order of orders;let i = index">
+      <mat-expansion-panel-header>
+        <mat-panel-title >
+          <mat-bold>
+          Name:</mat-bold>
+          {{order.uid}}
+        </mat-panel-title>
+        <mat-panel-description>
+          <div>
+          <button mat-raised-button
+          color = "warn"
+          (click) = "deleteOwner(owner.id)">
+          Delete
+          </button>
+        </div>
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <p><mat-bold>Car ID:</mat-bold> {{owner.carId}}<p>
+      <p><mat-bold>Car Company:</mat-bold> {{owner.carCompany}}</p>
+      <p><mat-bold>Car Model:</mat-bold> {{owner.carModel}}</p>
+      <p><mat-bold>Car Year:</mat-bold> {{owner.carYear}}</p>
+      <button mat-raised-button
+      color = "accent"
+      (click) = "editstate[i] = !editstate[i]"
+  >
+    Edit
+  </button>    
+  <ownerform 
+    [hidden] = "!editstate[i]"
+    [fullName] = "owner.fullName"
+    [carId] = "owner.carId"
+    [carCompany] = "owner.carCompany"
+    [carModel] = "owner.carModel"
+    [carYear] = "owner.carYear"
+    [formType] = "'Edit owner'"
+    [id] = "owner.id"
+    (update) = "update($event);editstate[i] = !editstate[i]"
+    (closeEdit) = "editstate[i] = !editstate[i]"
+  >
+</ownerform>
+    </mat-expansion-panel>
+  </mat-accordion>
+</mat-card>
+  
+
+!-->
+
+
+
+<div style="margin-top: 50px; margin-left:150px ;">
+<table mat-table style="width: 80%;"
+       [dataSource]="orders" multiTemplateDataRows = "false"
+       class="mat-elevation-z8">
+  <ng-container matColumnDef="{{column}}" *ngFor="let column of columnsToDisplay">
+    <th class="column" mat-header-cell *matHeaderCellDef style="width: 130px;"> {{column}} </th>
+    <td class="column" mat-cell *matCellDef="let element"> 
+        <div>
+{{element[column]}}  
+</div>   
+
+<div *ngIf="column === 'image'" style="width: 100px; height: 50px;">
+  <img  *ngIf = "image_url" style="width: 86px; height: 50px; margin-left: 21%; margin: 0px; padding: 0px; " src=  '{{element.image_url}}'><br><br>
+
+</div>
+
+
+<div *ngIf="column === 'actions'" style="width: 170px;">
+  <button click-stop-propagation mat-raised-button  style="background-color: #52db87; width: 80px; color: white; "(click)="editState(element.order_id); setStep(0);
+  " >Edit</button> 
+  <button click-stop-propagation mat-raised-button style="background-color: #f54b34; 
+  width: 80px; margin-left: 5px;  
+  color: white"
+   (click)="deleteOrder(element.order_id)"
+    >Delete</button>
+</div>
+     
+   
+
+
+
+     </td>
+  </ng-container>
+
+ 
+
+  <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+  <tr mat-row *matRowDef="let element; columns: columnsToDisplay;"
+      class="example-element-row"
+      [class.example-expanded-row]="expandedElement === element"
+      (click)="expandedElement = expandedElement === element ? null : element">
+  </tr>
+</table>

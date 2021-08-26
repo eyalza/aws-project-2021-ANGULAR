@@ -1,0 +1,17 @@
+<h2><p *ngIf = "!(salesData$ | async)&&!hasError">Loading data..</p></h2>
+<mat-card class="example-card">
+    <mat-card-header>
+      <div mat-card-avatar class="example-header-image"></div>
+      <mat-card-title *ngIf = "hasError">Hey</mat-card-title>
+      <mat-card-subtitle *ngIf = "!hasError"><img [src] = "image"></mat-card-subtitle>
+    </mat-card-header>
+    <img mat-card-image src="https://firebasestorage.googleapis.com/v0/b/project2021-e649b.appspot.com/o/car2.png?alt=media&token=ba7a77de-6a76-44d7-b0bd-ba2f85cdc66d">
+    <mat-card-content *ngIf = "!hasError">The Manufacturer of {{make}} is <mat-bold>{{(salesData$ | async)?.mfrName}}</mat-bold></mat-card-content>
+    <mat-card-content *ngIf = "hasError">{{errorMessage}}</mat-card-content>
+    <p><img class="tile-image" [src] = "makerImage"></p>
+    <button mat-raised-button color = "accent" [routerLink]="['/maker']">Select Maker</button >
+
+    <!--<a routerLink="/maker" routerLinkActive="active">Select Maker</a>-->
+    
+    
+  </mat-card>

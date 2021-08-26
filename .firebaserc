@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "project2021-e649b"
+  },
+  "targets": {
+    "project2021-e649b": {
+      "hosting": {
+        "project2021": [
+          "project2021-e649b"
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,45 @@
+<div style="margin-left: 40px;  margin-left: 400px;  width: 730px;"> 
+
+    <h1 style="font-weight: bold;">Car  Plate Detection</h1>
+
+</div>
+
+<mat-card style="width: 800px; height: 300px; margin-left: 400px; margin-bottom: 20px;" 
+*ngFor = "let image of images;let i = index">
+<div style="position: absolute; left: 450px; top: 50px;">
+    <button mat-raised-button style="background-color: #414141; color: white; margin-left: 70px;"
+    (click) = "detectText(i)"  >
+        
+DETECT   
+ </button>
+  <br>
+  <br>
+
+
+ <div style="width: 200px; height: 35px; background-color: rgb(219, 219, 219); margin-left: 100px; padding-top: 15px;">
+    <div style="margin-left: 20px; font-weight: bold;">
+
+      {{res_text_arr[i]}}
+
+    </div>
+    <div style="margin-left: 5px; font-size: 12px; margin-top: 20px;">
+      <div *ngIf = "res_conf_arr[i]">
+        confidence: {{res_conf_arr[i] |number:'1.0-2'}} %
+
+      </div>
+
+
+    </div>
+  </div>
+
+</div>
+
+
+
+<div>
+    <img style="width: 430px; height: 250px; margin-left: 50px; margin-top: 30px; padding: 0px; " src=  '{{image}}'><br><br>
+
+</div>
+
+
+</mat-card>

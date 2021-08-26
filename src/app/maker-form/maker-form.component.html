@@ -1,0 +1,18 @@
+<mat-card>
+    <h1>Maker Form</h1>
+    <form #makerForm = "ngForm" (ngSubmit) = "onSubmit()" >
+        <div>
+            <mat-form-field appearance="fill">
+                <mat-label>Maker Selection</mat-label>
+                <mat-select place-holder = "Make" [(ngModel)] = "make" name = "make" required>
+                  <mat-option *ngFor="let make of makers" [value]="make.name">
+                    {{make.name}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>       
+        </div>
+        <div>
+           <button [disabled] = "!makerForm.form.valid"  type = "submit" mat-raised-button color="accent">See manufacturer for {{make}}</button>
+        </div>
+    </form>
+</mat-card>

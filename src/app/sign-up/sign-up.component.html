@@ -1,0 +1,54 @@
+<mat-card style="width: 800px; margin-left: 530px; text-align: center;">
+  <br>
+    <span style=" font-size: 30px; font-weight: 500;">                     SIGN UP
+    </span>
+    <br>
+    <br>
+    <br>
+
+    <form #signupForm="ngForm" (ngSubmit)="onSubmit()">
+      <div class="example-container">
+        <p>
+            <mat-form-field style="width: 300px;" appearance="fill">
+              <mat-label>Email</mat-label>
+              <input matInput placeholder="example: you@you.com"
+                [(ngModel)] = "email"
+                name = "email"
+                required>
+              <mat-hint>The one you really use</mat-hint>
+            </mat-form-field>
+          </p> 
+          <p>
+         <br>
+            <mat-form-field style="width: 300px;" appearance="fill">
+              <mat-label>Password</mat-label>
+              <input  matInput placeholder="example: 42343@@##aZ"
+                [(ngModel)] = "password" 
+                name = "password" 
+                type = "password"
+                required>
+              <mat-hint>6 chracters or more</mat-hint>
+            </mat-form-field>
+          </p>                                       
+        <div >
+          <br>
+          <br>
+
+          <mat-divider style="width: 90%; margin-left: 40px;"></mat-divider><br>
+          <br>
+
+            <button mat-button color="primary" 
+                    [disabled]="!signupForm.form.valid">
+                     SIGN UP
+            </button>
+        </div>
+        <div style="width: 100%; height: 14px;margin-bottom: 8px; margin-top: 8px;">
+        <h4 *ngIf = "isError" style="color: #a71d1d; font-weight:bold">{{errorMessage}}</h4>
+      </div>
+
+
+      </div>
+    </form>
+   </mat-card>
+
+

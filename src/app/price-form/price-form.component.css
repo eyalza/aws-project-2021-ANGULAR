@@ -1,0 +1,16 @@
+.mat-card{
+  background-color:#ffffff;
+  width: 700px;
+margin-left: 500px;
+}
+
+.example-radio-group {
+    display: flex;
+    flex-direction: column;
+    margin: 15px 0;
+    background-color:rgb(249, 239, 237);
+  }
+  
+  .example-radio-button {
+    margin: 5px;
+  }
